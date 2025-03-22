@@ -29,6 +29,12 @@ jobs:
       - image: cimg/node:20.10
     steps:
       - checkout
+      - restore_cache
+          keys:
+            - node-deps-{{ checksum "package-lock.json"}}
+      - run:
+          name: install dependencies
+          command: npm ci
       - attach_workspace:
           at: .
       - run:
