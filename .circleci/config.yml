@@ -38,6 +38,9 @@ jobs:
       - attach_workspace:
           at: .
       - run:
+          name: Start Storybook
+          command: npm run Storybook -- --ci &
+      - run:
           name: Run Storybook interaction tests
           command: npm run test-storybook
 
