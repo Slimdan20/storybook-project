@@ -41,6 +41,9 @@ jobs:
           name: Start Storybook
           command: npm run Storybook -- --ci &
       - run:
+          name: Wait for storybook to be available
+          command: npx wait-on http://localhost:6006
+      - run:
           name: Run Storybook interaction tests
           command: npm run test-storybook
 
