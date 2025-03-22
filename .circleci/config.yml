@@ -24,16 +24,16 @@ jobs:
           paths:
             - storybook-static
 
-    run-interaction-tests:
-      docker:
-        - image: cimg/node:20.10
-      steps:
-        - checkout
-        - attach_workspace:
-            at: .
-        - run:
-            name: Run Storybook interaction tests
-            command: npm run test-storybook
+  run-interaction-tests:
+    docker:
+      - image: cimg/node:20.10
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run Storybook interaction tests
+          command: npm run test-storybook
 
 workflow:
   version: 2
