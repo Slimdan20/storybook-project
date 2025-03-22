@@ -39,10 +39,10 @@ jobs:
           at: .
       - run:
           name: Start Storybook
-          command: npx http-server storybook-static -p 6007 &
+          command: npx serve -s storybook-static -1 6006 &
       - run:
           name: Wait for storybook to be available
-          command: npx wait-on http://localhost:6007
+          command: npx wait-on http://localhost:6006
       - run:
           name: Run Storybook interaction tests
           command: npm run test-storybook
