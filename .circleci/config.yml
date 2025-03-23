@@ -39,10 +39,10 @@ jobs:
           at: .
       - run:
           name: Start Storybook
-          command: npx serve -s storybook-static -1 6006 > storybook.log 2>&1 &
+          command: nohup npx serve -s storybook-static -1 6006 > storybook.log 2>&1 &
       - run:
           name: Wait for storybook to be available
-          command: npx wait-on --timeout 300000 http://localhost:6006
+          command: npx wait-on http://localhost:6006
       - run:
           name: Verify storybook is running
           command: curl -I http://localhost:6006 || (echo "Storybook did not start" && exit 1)
