@@ -37,15 +37,18 @@ jobs:
           command: npm ci
       - attach_workspace:
           at: .
+      - run: 
+          name: install serve
+          command: npm install -g serve
       - run:
           name: Start Storybook
-          command: nohup npx serve -s storybook-static -1 6006 > storybook.log 2>&1 &
+          command: nohup npx serve -s storybook-static -l 6006 > storybook.log 2>&1 &
       - run:
           name: Wait for storybook to be available
           command: npx wait-on http://localhost:6006
       - run:
           name: Verify storybook is running
-          command: curl -I http://localhost:6006 || (echo "Storybook did not start" && exit 1)
+          command: curl -I http://localhost:6006 || (echo "Storybook did not start" && cat storybook.log && exit 1)
       - run:
           name: Run Storybook interaction tests
           command: npm run test-storybook
