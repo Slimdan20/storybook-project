@@ -48,7 +48,7 @@ jobs:
           command: curl -I http://localhost:6006 || (echo "Storybook did not start" && exit 1)
       - run:
           name: Run Storybook interaction tests
-          command: npm run test-storybooks
+          command: npm run test-storybook
 
 workflows:
   version: 2
