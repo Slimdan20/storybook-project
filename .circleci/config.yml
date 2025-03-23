@@ -42,7 +42,8 @@ jobs:
           command: npm install -g serve
       - run:
           name: Start Storybook
-          command: nohup npx serve -s storybook-static -l 6006 &
+          command: npx storybook dev -p 6006 --host 0.0.0.0
+          background: true
       - run:
           name: Check Running Processes
           command: ps aux | grep serve
