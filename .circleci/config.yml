@@ -88,4 +88,4 @@ workflows:
             - build-storybook
       - publish-to-chromatic:
           requires:
-            - build-storybook
+            - run-interaction-tests
