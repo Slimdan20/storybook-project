@@ -56,7 +56,9 @@ jobs:
       - run:
           name: Verify Storybook is running
           command: curl -I http://localhost:6006 || (echo "Storybook did not start" && exit 1)
-      - run: npx playwright install --with-deps
+      - run: 
+          name: Install Playwright
+          command: npx playwright install --with-deps
       - run:
           name: Run Storybook interaction tests
           command: npm run test-storybook
