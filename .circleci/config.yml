@@ -63,11 +63,29 @@ jobs:
           name: Run Storybook interaction tests
           command: npm run test-storybook
 
+  publish-to-chromatic:
+    docker:
+      - image: cimg/node:20.10
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-deps-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install dependencies
+          command: npm ci
+      - run:
+          name: Publish Storybook to Chromatic
+          command: npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN
+
 workflows:
   version: 2
   test_and_build:
     jobs:
       - build-storybook
       - run-interaction-tests:
+          requires:
+            - build-storybook
+      - publish-to-chromatic:
           requires:
             - build-storybook
