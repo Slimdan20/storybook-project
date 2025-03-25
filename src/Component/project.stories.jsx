@@ -11,6 +11,7 @@ import ImageThree from '../assets/game-pad.jpg'
 export default {
     title: 'Components/Project',
     component: Project,
+    parameters: { docs: { page: null } },
   };
 
   const Template = (args) => <Project {...args} />
