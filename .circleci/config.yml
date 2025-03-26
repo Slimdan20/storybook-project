@@ -37,25 +37,10 @@ jobs:
           command: npm ci
       - attach_workspace:
           at: .
-      - run: 
-          name: install serve
-          command: npm install -g serve
       - run:
           name: Start Storybook
           command: npx storybook dev -p 6006 --host 0.0.0.0
           background: true
-      - run:
-          name: Check Running Processes
-          command: ps aux | grep serve
-      - run:
-          name: Check Open Ports
-          command: netstat -tulnp
-      - run:
-          name: Wait for Storybook to be available
-          command: npx wait-on http://localhost:6006
-      - run:
-          name: Verify Storybook is running
-          command: curl -I http://localhost:6006 || (echo "Storybook did not start" && exit 1)
       - run: 
           name: Install Playwright
           command: npx playwright install --with-deps
